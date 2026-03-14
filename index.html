@@ -27,8 +27,8 @@
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">首 卷</a></li>
-                <li><a href="content.html">藏 经</a></li>
-                <li><a href="community.html">同 修</a></li>
+                <li><a href="content.html">AI</a></li>
+                <li><a href="community.html">社区</a></li>
                 <li><a href="https://github.com/Hujunchuan/Dacheng-Wisdom" target="_blank">知 识 库</a></li>
             </ul>
             <div class="nav-controls">
@@ -63,34 +63,43 @@
                 <button class="btn-cta" onclick="window.location.href='community.html';">加入共建</button>
             </div>
             
-            <div class="zen-terminal stagger-2 animate-slide-up">
+            <div class="zen-terminal stagger-2 animate-slide-up" id="heroTerminal">
                 <div class="zen-terminal-header">
                     <div class="terminal-dot" style="background: #FF5F56;"></div>
                     <div class="terminal-dot" style="background: #FFBD2E;"></div>
                     <div class="terminal-dot" style="background: #27C93F;"></div>
                     
-                    <div class="terminal-nav">
-                        <button class="terminal-tab active">Core Engine</button>
-                        <button class="terminal-tab">VR Environment</button>
-                        <button class="terminal-tab">Bio-Sensors</button>
+                    <div class="terminal-nav" role="tablist" aria-label="止观 AI 模式选择">
+                        <button class="terminal-tab active" type="button" data-terminal-view="core">Core Engine</button>
+                        <button class="terminal-tab" type="button" data-terminal-view="practice">Practice Guide</button>
+                        <button class="terminal-tab" type="button" data-terminal-view="growth">Growth Loop</button>
                     </div>
                 </div>
                 
                 <div class="zen-terminal-body">
-                    <div class="terminal-line">
-                        <span class="terminal-prompt">&gt;</span> Initialize mindset...
+                    <div class="terminal-status">
+                        <span class="terminal-status-dot"></span>
+                        <span id="terminalContextLabel">Core Engine 已连接</span>
                     </div>
-                    <div class="terminal-line" style="margin-left: 20px;">
-                        <span class="terminal-comment">// 正在载入《止观AI项目总述》...</span>
+
+                    <div class="terminal-output" id="terminalOutput" aria-live="polite"></div>
+
+                    <div class="terminal-shortcuts" aria-label="推荐指令">
+                        <button class="terminal-shortcut" type="button" data-command="help">help</button>
+                        <button class="terminal-shortcut" type="button" data-command="begin">begin</button>
+                        <button class="terminal-shortcut" type="button" data-command="knowledge">knowledge</button>
+                        <button class="terminal-shortcut" type="button" data-command="community">community</button>
                     </div>
-                    <div class="terminal-line" style="margin-left: 20px; color: #8C8C8C; font-family: var(--font-serif); font-size: 16px;">
-                        > 以禅法传承为根，以 AI、VR 与生物传感技术为翼，<br>
-                        > 探索一种更可量化、更沉浸、更个性化的心智训练路径。
-                    </div>
-                    <div class="terminal-line" style="margin-top: 24px; color: var(--accent-green);">
-                        [System] Environment ready. Type 'help' to begin. <span style="animation: blink 1s step-end infinite;">█</span>
-                    </div>
-                    
+
+                    <form class="terminal-form" id="terminalForm">
+                        <label class="terminal-entry" for="terminalInput">
+                            <span class="terminal-prompt">&gt;</span>
+                            <input id="terminalInput" class="terminal-input" type="text" placeholder="输入 help、begin、knowledge、community..." autocomplete="off">
+                        </label>
+                        <button class="terminal-submit" type="submit">发 问</button>
+                    </form>
+
+                    <p class="terminal-hint">这个框现在可以互动了。输入命令可以查看路线、跳转页面，或确认知识库开放方式。</p>
                 </div>
             </div>
         </div>
@@ -307,6 +316,176 @@
             
             if(btnSearch) btnSearch.addEventListener('click', () => searchModal.classList.add('active'));
             if(btnLang) btnLang.addEventListener('click', () => langModal.classList.add('active'));
+
+            const heroTerminal = document.getElementById('heroTerminal');
+            if (heroTerminal) {
+                const terminalOutput = document.getElementById('terminalOutput');
+                const terminalForm = document.getElementById('terminalForm');
+                const terminalInput = document.getElementById('terminalInput');
+                const terminalTabs = heroTerminal.querySelectorAll('[data-terminal-view]');
+                const terminalShortcuts = heroTerminal.querySelectorAll('[data-command]');
+                const terminalContextLabel = document.getElementById('terminalContextLabel');
+                let activeTerminalView = 'core';
+
+                const terminalViews = {
+                    core: {
+                        label: 'Core Engine 已连接',
+                        lines: [
+                            { text: '[boot] 止观 AI 主引擎已唤醒。', className: 'terminal-line-success' },
+                            { text: '// 输入 help 查看可用指令。', className: 'terminal-line-comment' },
+                            { text: '当前目标：让用户与 AI 共修、共学、共成长。', className: 'terminal-line-muted' }
+                        ]
+                    },
+                    practice: {
+                        label: 'Practice Guide 已待命',
+                        lines: [
+                            { text: '[practice] 今日建议：先做 3 分钟呼吸安住，再进入正式对话。', className: 'terminal-line-success' },
+                            { text: '// 输入 begin 可进入当前修习原型页。', className: 'terminal-line-comment' },
+                            { text: 'AI 共修页未来会接入阶段计划、练习回顾与引用解释。', className: 'terminal-line-muted' }
+                        ]
+                    },
+                    growth: {
+                        label: 'Growth Loop 规划中',
+                        lines: [
+                            { text: '[growth] 会话记忆、阶段总结、知识引用将在此闭环。', className: 'terminal-line-success' },
+                            { text: '// 输入 knowledge 查看知识库的开放方式。', className: 'terminal-line-comment' },
+                            { text: '目标不是一次性回答，而是长期陪伴修习与成长。', className: 'terminal-line-muted' }
+                        ]
+                    }
+                };
+
+                const commandAliases = {
+                    '开始': 'begin',
+                    '修习': 'begin',
+                    '共修': 'begin',
+                    '登录': 'login',
+                    '知识库': 'knowledge',
+                    '同修': 'community',
+                    '加入': 'join',
+                    '清空': 'clear'
+                };
+
+                const scrollTerminalToBottom = () => {
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                };
+
+                const appendTerminalLine = (text, className = '') => {
+                    const line = document.createElement('div');
+                    line.className = ['terminal-line', className].filter(Boolean).join(' ');
+                    line.textContent = text;
+                    terminalOutput.appendChild(line);
+                    scrollTerminalToBottom();
+                };
+
+                const appendUserLine = (command) => {
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line terminal-line-user';
+
+                    const prompt = document.createElement('span');
+                    prompt.className = 'terminal-prompt';
+                    prompt.textContent = '>';
+
+                    const text = document.createElement('span');
+                    text.textContent = command;
+
+                    line.append(prompt, text);
+                    terminalOutput.appendChild(line);
+                    scrollTerminalToBottom();
+                };
+
+                const renderTerminalView = (viewKey) => {
+                    const view = terminalViews[viewKey];
+                    if (!view) return;
+
+                    terminalOutput.innerHTML = '';
+                    terminalContextLabel.textContent = view.label;
+                    view.lines.forEach((line) => appendTerminalLine(line.text, line.className));
+                    terminalInput.focus();
+                };
+
+                const executeCommand = (rawCommand) => {
+                    const normalized = commandAliases[rawCommand] || rawCommand.toLowerCase();
+
+                    if (normalized === 'clear') {
+                        renderTerminalView(activeTerminalView);
+                        return;
+                    }
+
+                    if (normalized === 'help') {
+                        appendTerminalLine('可用命令：help / begin / knowledge / community / join / login / clear', 'terminal-line-success');
+                        appendTerminalLine('提示：上方三个标签分别对应主引擎、修习引导和成长闭环。', 'terminal-line-muted');
+                        return;
+                    }
+
+                    if (normalized === 'begin') {
+                        appendTerminalLine('正在进入修习入口……当前仍是静态原型页，下一步会升级成 AI 共修界面。', 'terminal-line-success');
+                        window.setTimeout(() => {
+                            window.location.href = 'content.html';
+                        }, 700);
+                        return;
+                    }
+
+                    if (normalized === 'knowledge') {
+                        appendTerminalLine('知识库不会直接跳转 GitHub。它会作为站内私有能力存在，并在登录后开放。', 'terminal-line-success');
+                        appendTerminalLine('仓库内容只是知识源之一，会先同步、清洗、切片，再进入内部知识系统。', 'terminal-line-muted');
+                        return;
+                    }
+
+                    if (normalized === 'community') {
+                        appendTerminalLine('正在前往同修共建区……', 'terminal-line-success');
+                        window.setTimeout(() => {
+                            window.location.href = 'community.html';
+                        }, 700);
+                        return;
+                    }
+
+                    if (normalized === 'join') {
+                        appendTerminalLine('正在定位到共建说明……', 'terminal-line-success');
+                        document.getElementById('join')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        return;
+                    }
+
+                    if (normalized === 'login') {
+                        appendTerminalLine('正在打开个人入口……', 'terminal-line-success');
+                        window.setTimeout(() => {
+                            window.location.href = 'auth.html';
+                        }, 700);
+                        return;
+                    }
+
+                    appendTerminalLine('未识别指令。你可以输入 help 查看可用命令。', 'terminal-line-error');
+                };
+
+                terminalTabs.forEach((tab) => {
+                    tab.addEventListener('click', () => {
+                        activeTerminalView = tab.dataset.terminalView;
+                        terminalTabs.forEach((item) => item.classList.toggle('active', item === tab));
+                        renderTerminalView(activeTerminalView);
+                    });
+                });
+
+                terminalShortcuts.forEach((button) => {
+                    button.addEventListener('click', () => {
+                        const command = button.dataset.command;
+                        if (!command) return;
+                        appendUserLine(command);
+                        executeCommand(command);
+                    });
+                });
+
+                terminalForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    const rawCommand = terminalInput.value.trim();
+                    if (!rawCommand) return;
+
+                    appendUserLine(rawCommand);
+                    terminalInput.value = '';
+                    executeCommand(rawCommand);
+                });
+
+                renderTerminalView(activeTerminalView);
+            }
 
             // Navbar Scroll Logic
             const handleScroll = () => {

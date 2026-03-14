@@ -410,6 +410,7 @@ body:has(.navbar:hover) {
 /* Utilities */
 .text-center { text-align: center; }
 .mt-4 { margin-top: var(--space-lg); }
+.font-kai { font-family: var(--font-kai); }
 
 /* Zhiguan AI Additions */
 .grid-2 {
@@ -534,10 +535,66 @@ body:has(.navbar:hover) {
     border-radius: 0 0 24px 24px;
 }
 
+.terminal-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    color: #a9b5ad;
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 13px;
+}
+
+.terminal-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    box-shadow: 0 0 0 6px rgba(92, 122, 107, 0.12);
+}
+
+.terminal-output {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 220px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
 .terminal-line {
-    margin-bottom: 12px;
     font-size: 15px;
     line-height: 1.6;
+    color: #d9d9d9;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.terminal-line-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+}
+
+.terminal-line-comment {
+    color: #7b8b83;
+}
+
+.terminal-line-muted {
+    color: #8c8c8c;
+}
+
+.terminal-line-success {
+    color: #8ec2a9;
+}
+
+.terminal-line-error {
+    color: #d49090;
 }
 
 .terminal-prompt {
@@ -547,6 +604,86 @@ body:has(.navbar:hover) {
 
 .terminal-comment {
     color: #6A4C41; /* 檀木褐用于注释 */
+}
+
+.terminal-shortcuts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.terminal-shortcut {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    color: #d0d0d0;
+    font-family: monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.terminal-shortcut:hover {
+    border-color: rgba(92, 122, 107, 0.45);
+    color: #ffffff;
+    background: rgba(92, 122, 107, 0.12);
+}
+
+.terminal-form {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.terminal-entry {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #f1f1f1;
+    font-size: 15px;
+    font-family: monospace;
+}
+
+.terminal-input::placeholder {
+    color: #7e7e7e;
+}
+
+.terminal-submit {
+    padding: 14px 20px;
+    border: 1px solid rgba(92, 122, 107, 0.45);
+    border-radius: 16px;
+    background: rgba(92, 122, 107, 0.12);
+    color: #f1f1f1;
+    font-family: var(--font-kai);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.terminal-submit:hover {
+    background: rgba(92, 122, 107, 0.22);
+    transform: translateY(-1px);
+}
+
+.terminal-hint {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #7e7e7e;
 }
 
 /* Glassmorphic Floating News Card */
@@ -701,6 +838,21 @@ body:has(.navbar:hover) {
     .text-vertical, .text-vertical-upright { writing-mode: horizontal-tb; }
     .hero-intro { margin-top: var(--space-md); text-align: center; max-width: 100%; }
     .hero-ctas { flex-direction: column; }
+    .zen-terminal-header,
+    .terminal-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .terminal-nav {
+        margin-left: 0;
+        flex-wrap: wrap;
+    }
+    .zen-terminal-body {
+        padding: 24px;
+    }
+    .terminal-submit {
+        width: 100%;
+    }
     
     .glass-card {
         bottom: 24px;
