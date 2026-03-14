@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>止观AI - 让千年止观进入 AI 时代</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <style>
+        .zhi-mang-xing { font-family: 'Zhi Mang Xing', cursive; }
+    </style>
+</head>
+<body>
+    <!-- 隐藏式导航栏触发区 -->
+    <div class="nav-trigger-area"></div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar animate-fade-in">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#">止观 AI</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首 卷</a></li>
+                <li><a href="content.html">藏 经</a></li>
+                <li><a href="community.html">同 修</a></li>
+                <li><a href="https://github.com/Hujunchuan/Dacheng-Wisdom" target="_blank">知 识 库</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button title="搜索" class="hover-ink" id="btnSearch">🔍</button>
+                <button title="繁简切换" class="hover-ink" id="btnLang">繁</button>
+                <div style="width: 1px; height: 16px; background: var(--border-color); margin: 0 8px;"></div>
+                <!-- 模拟已登录状态的用户入口 -->
+                <a href="auth.html" title="个人主页" class="hover-ink" style="font-family: var(--font-serif); font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--accent-green); display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-family: var(--font-kai);">悟</div>
+                    <span>居士</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部横幅 (Hero Section) -->
+    <header class="hero" id="home">
+        <div class="hero-bg animate-float"></div>
+        <div class="hero-mountain"></div>
+        
+        <div class="container hero-content">
+            <div class="hero-title-wrap">
+                <h1 class="hero-title zhi-mang-xing">止观</h1>
+                <div class="hero-subtitle-box stagger-1 animate-slide-up">
+                    <span style="color: var(--accent-green); font-size: 20px;">*</span> 
+                    <span style="font-family: var(--font-serif); font-size: 22px; color: var(--text-primary); letter-spacing: 4px;">让千年止观进入 AI 时代</span>
+                </div>
+            </div>
+            
+            <div class="hero-ctas stagger-2 animate-slide-up" style="margin-top: 40px; justify-content: center; flex-direction: row;">
+                <button class="btn-cta primary" onclick="window.location.href='content.html';">开始修习</button>
+                <button class="btn-cta" onclick="window.location.href='community.html';">加入共建</button>
+            </div>
+            
+            <div class="zen-terminal stagger-2 animate-slide-up">
+                <div class="zen-terminal-header">
+                    <div class="terminal-dot" style="background: #FF5F56;"></div>
+                    <div class="terminal-dot" style="background: #FFBD2E;"></div>
+                    <div class="terminal-dot" style="background: #27C93F;"></div>
+                    
+                    <div class="terminal-nav">
+                        <button class="terminal-tab active">Core Engine</button>
+                        <button class="terminal-tab">VR Environment</button>
+                        <button class="terminal-tab">Bio-Sensors</button>
+                    </div>
+                </div>
+                
+                <div class="zen-terminal-body">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">&gt;</span> Initialize mindset...
+                    </div>
+                    <div class="terminal-line" style="margin-left: 20px;">
+                        <span class="terminal-comment">// 正在载入《止观AI项目总述》...</span>
+                    </div>
+                    <div class="terminal-line" style="margin-left: 20px; color: #8C8C8C; font-family: var(--font-serif); font-size: 16px;">
+                        > 以禅法传承为根，以 AI、VR 与生物传感技术为翼，<br>
+                        > 探索一种更可量化、更沉浸、更个性化的心智训练路径。
+                    </div>
+                    <div class="terminal-line" style="margin-top: 24px; color: var(--accent-green);">
+                        [System] Environment ready. Type 'help' to begin. <span style="animation: blink 1s step-end infinite;">█</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 在做什么 & 为什么做 -->
+    <section class="section" id="about" style="background-color: var(--bg-color);">
+        <div class="container">
+            <div class="grid-2">
+                <div class="bento-card animate-slide-up">
+                    <div class="bento-icon">◈</div>
+                    <h2 class="section-title" style="font-size: 24px;">止观 AI 在做什么</h2>
+                    <p style="margin-bottom: var(--space-md); margin-top: var(--space-md);">
+                        止观AI 是一个面向未来的心智训练项目。
+                        它试图把传统禅宗“止观”中关于专注、观照、调心、定慧训练的智慧，与人工智能、虚拟现实、生物传感等技术结合起来，构建一种新的数字化修习体验。
+                    </p>
+                    <p style="margin-bottom: var(--space-md);">它更关心的是：</p>
+                    <ul style="list-style: none; color: var(--accent-green); font-family: var(--font-kai);">
+                        <li style="margin-bottom: 8px;">- 如何降低禅修入门门槛</li>
+                        <li style="margin-bottom: 8px;">- 如何让练习过程更可见、可反馈、可持续</li>
+                        <li style="margin-bottom: 8px;">- 如何让古老的方法获得生命力</li>
+                    </ul>
+                </div>
+                
+                <div class="bento-card animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="bento-icon">❖</div>
+                    <h2 class="section-title" style="font-size: 24px;">我们为什么做这件事</h2>
+                    <p style="margin-bottom: var(--space-md); margin-top: var(--space-md);">传统禅修有它深厚的价值，但在现代语境里也面临很多现实难题：</p>
+                    <ul style="list-style: none; margin-bottom: var(--space-lg); color: var(--text-light);">
+                        <li style="margin-bottom: 8px;">- 依赖有经验者长期指导，入门门槛高</li>
+                        <li style="margin-bottom: 8px;">- 练习过程难以量化，效果不易感知</li>
+                        <li style="margin-bottom: 8px;">- 调伏心念难，坚持更难</li>
+                        <li style="margin-bottom: 8px;">- 对很多普通人来说，宗教距离较远</li>
+                    </ul>
+                    <div style="background: rgba(26, 26, 26, 0.03); padding: 16px; border-radius: 8px; border-left: 2px solid var(--text-primary);">
+                        <p style="font-family: var(--font-kai); margin: 0; line-height: 1.6; color: var(--text-primary);">
+                            我们相信，<strong>技术不应该取代修行本身，但技术可以成为一种桥梁</strong>——帮助更多人看见、进入并坚持一条真实的内在训练之路。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心方向 -->
+    <section class="section" id="directions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">核心方向</h2>
+            </div>
+            
+            <div class="grid-4 animate-slide-up" style="animation-delay: 0.3s;">
+                <div class="card hover-ink">
+                    <div class="card-category">【 根 基 】</div>
+                    <h3 class="card-title font-kai">禅法传承</h3>
+                    <p class="card-excerpt">以“止观”这一传统方法为核心，不脱离根本，不空谈概念。</p>
+                </div>
+                <div class="card hover-ink">
+                    <div class="card-category">【 赋 能 】</div>
+                    <h3 class="card-title font-kai">AI 辅助</h3>
+                    <p class="card-excerpt">让 AI 参与信息整理、方法支持、知识库协作、个性化反馈与训练辅助。</p>
+                </div>
+                <div class="card hover-ink">
+                    <div class="card-category">【 临 场 】</div>
+                    <h3 class="card-title font-kai">沉浸式体验</h3>
+                    <p class="card-excerpt">结合 VR 与交互设计，探索更具临场感、更容易进入状态的训练方式。</p>
+                </div>
+                <div class="card hover-ink">
+                    <div class="card-category">【 反 馈 】</div>
+                    <h3 class="card-title font-kai">生物传感量化</h3>
+                    <p class="card-excerpt">结合脑电等传感技术，尝试让原本难以描述的内在过程，获得一定程度的可见性与反馈。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 价值主张 -->
+    <section class="section">
+        <div class="container">
+            <div class="grid-2 animate-slide-up">
+                <div class="value-box negative">
+                    <h3 class="font-kai" style="font-size: 20px; margin-bottom: 24px; color: var(--text-light);">止观 AI ✖️ 绝不是...</h3>
+                    <ul>
+                        <li>不是普通的情绪安抚工具</li>
+                        <li>不是简单的冥想打卡产品</li>
+                        <li>不是空泛的 AI 心灵包装</li>
+                        <li>不是只讲技术、不讲修法根基的实验品</li>
+                    </ul>
+                </div>
+                <div class="value-box positive">
+                    <h3 class="font-kai" style="font-size: 20px; margin-bottom: 24px; color: var(--accent-green);">止观 AI ✔️ 真正在做...</h3>
+                    <ul>
+                        <li>把传统心法转译为当代人可进入的训练路径</li>
+                        <li>用技术降低门槛，而不是替代修行</li>
+                        <li>用反馈增强坚持，而不是制造幻觉</li>
+                        <li>在传承、公益与创新之间寻找新的可能性</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加入我们 -->
+    <section class="section" id="join" style="background-color: var(--surface-color);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">一起把止观带入 AI 时代</h2>
+                <p class="font-kai mt-4" style="color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    如果你相信：人的内在训练值得被认真对待；古老的方法可以与新技术相遇；技术不只是效率工具，也可以成为心智成长的桥梁。<br>那么你很可能适合加入止观AI。
+                </p>
+            </div>
+            
+            <div class="grid-2 animate-slide-up" style="margin-bottom: var(--space-xl);">
+                <div>
+                    <h3 class="font-kai" style="font-size: 20px; margin-bottom: 16px; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px;">为什么现在值得加入？</h3>
+                    <p style="margin-bottom: 16px;">止观AI 还处在早期，但方向已经很清楚：项目已启动并形成核心团队；已完成项目方案与商业计划；已经形成组织的底层机制；正在从“理念”走向“系统化建构”。</p>
+                    <p>这意味着现在加入，不只是围观一个已经成型的产品，而是有机会参与一件事情的早期定义：<strong>它如何被理解、设计，如何真正落地，并最终将服务怎样的人。</strong></p>
+                </div>
+                <div>
+                    <h3 class="font-kai" style="font-size: 20px; margin-bottom: 16px; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px;">我们欢迎怎样的人？</h3>
+                    <div style="font-family: var(--font-serif); font-size: 14px; line-height: 1.8;">
+                        <p><strong class="font-kai">对修行与心智训练有真实兴趣：</strong>不只是当概念，关心人如何训练自己。</p>
+                        <p><strong class="font-kai">有跨界实践能力：</strong>涵盖禅法、VR、AI、产品、UIUX。</p>
+                        <p><strong class="font-kai">愿意长期共建：</strong>止观AI 更像一个长期生长中的体系。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn-cta primary" style="font-size: 20px; padding: 16px 48px; letter-spacing: 4px;">加入止观 AI</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header">
+                <h2 class="section-title" style="letter-spacing: 4px;">释疑 (FAQ)</h2>
+            </div>
+            
+            <div class="faq-list animate-slide-up">
+                <div class="faq-item">
+                    <div class="faq-q">◈ 止观 AI 是一个什么项目？</div>
+                    <div class="faq-a">一个将禅宗止观方法与 AI、VR、生物传感技术结合的心智训练项目。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">◈ 它是宗教项目吗？</div>
+                    <div class="faq-a">它根植于禅法传承，但希望以更开放、更可进入、更适合当代人的方式去表达和实践。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">◈ 它是一个 App 吗？</div>
+                    <div class="faq-a">目前不只是单一产品形态，更像一个正在形成中的系统：包含方法、产品、技术、知识库和协作机制。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">◈ 为什么需要 AI 和 VR？</div>
+                    <div class="faq-a">AI 不是为了替代修行，而是为了帮助知识整理、训练支持。VR 和生物传感则是在探索一种更沉浸、更可感知、更可持续的训练体验，让原本抽象的定慧过程变得容易进入与反馈。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 止观 AI. 探索心智的数字化沉浸之路.</p>
+    </footer>
+
+    <!-- Global Floating Glass Card -->
+    <div class="glass-card animate-slide-up" id="globalNoticeCard" style="animation-delay: 1s;">
+        <button class="glass-card-close" onclick="document.getElementById('globalNoticeCard').style.display='none'">✕</button>
+        <div class="glass-card-header">
+            <i style="color: var(--accent-gold);">⚡</i> 最新动态 (Latest News)
+        </div>
+        <h3 class="glass-card-title">寻找 100 位修习者</h3>
+        <p class="glass-card-desc">我们正在进行首期内测招募，邀请您共同参与止观 AI 的内测。</p>
+        <a href="community.html" style="display: inline-block; margin-top: 16px; font-weight: bold; border-bottom: 1px solid var(--text-primary);">立即了解 &rarr;</a>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="overlay-modal" id="searchModal">
+        <button class="modal-close" onclick="document.getElementById('searchModal').classList.remove('active')">✕</button>
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="输入关键字..." autofocus>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Overlay -->
+    <div class="overlay-modal" id="langModal">
+        <button class="modal-close" onclick="document.getElementById('langModal').classList.remove('active')">✕</button>
+        <div class="lang-container">
+            <div class="lang-title">选择语言</div>
+            <div class="lang-grid">
+                <div class="lang-option active">
+                    <div class="lang-name">简体中文</div>
+                    <div class="lang-desc">标准语境</div>
+                </div>
+                <div class="lang-option">
+                    <div class="lang-name">English</div>
+                    <div class="lang-desc">Global Access</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnSearch = document.getElementById('btnSearch');
+            const searchModal = document.getElementById('searchModal');
+            const btnLang = document.getElementById('btnLang');
+            const langModal = document.getElementById('langModal');
+            
+            if(btnSearch) btnSearch.addEventListener('click', () => searchModal.classList.add('active'));
+            if(btnLang) btnLang.addEventListener('click', () => langModal.classList.add('active'));
+
+            // Navbar Scroll Logic
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    document.body.classList.add('is-scrolled');
+                } else {
+                    document.body.classList.remove('is-scrolled');
+                }
+            };
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            handleScroll(); // init
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-slide-up').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top > window.innerHeight) {
+                   el.style.animationPlayState = 'paused';
+                }
+                observer.observe(el);
+            });
+            
+            // 简单的 FAQ 点击展开动效
+            document.querySelectorAll('.faq-q').forEach(q => {
+                q.addEventListener('click', function() {
+                    const a = this.nextElementSibling;
+                    if (a.style.display === 'none' || a.style.display === '') {
+                        a.style.display = 'block';
+                        a.style.animation = 'fadeIn 0.3s ease-in';
+                    } else {
+                        a.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同修 - 禅修问答与交流</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .community-header {
+            padding: var(--space-xxl) 0 var(--space-lg);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: var(--space-xl);
+            background: linear-gradient(to bottom, transparent, rgba(250, 250, 248, 0.5));
+        }
+
+        .forum-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: var(--space-xxl);
+            align-items: start;
+            margin-bottom: var(--space-xxl);
+        }
+
+        /* 左侧边栏 - 分类 */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-item {
+            margin-bottom: var(--space-md);
+        }
+
+        .category-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            color: var(--text-secondary);
+            font-family: var(--font-kai);
+            font-size: 18px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .category-link:hover, .category-link.active {
+            background: var(--surface-color);
+            color: var(--text-primary);
+        }
+
+        .category-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60%;
+            background-color: var(--accent-red);
+        }
+
+        .category-count {
+            font-size: 14px;
+            color: var(--text-light);
+            font-family: var(--font-serif);
+        }
+
+        /* 帖子列表 */
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .post-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: var(--space-lg);
+            border-radius: 2px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-color: rgba(92, 122, 107, 0.3);
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+        }
+
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-kai);
+            color: var(--text-secondary);
+        }
+
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 14px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .post-time {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .post-title {
+            font-size: 20px;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .post-excerpt {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: var(--space-md);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-footer {
+            display: flex;
+            gap: var(--space-lg);
+            font-size: 14px;
+            color: var(--text-light);
+            border-top: 1px dashed var(--border-color);
+            padding-top: var(--space-sm);
+        }
+
+        .post-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 发帖按钮 */
+        .btn-write {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-green);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-family: var(--font-kai);
+            font-size: 18px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-bottom: var(--space-lg);
+            transition: background 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-write:hover {
+            background: #4a6356;
+        }
+
+        @media (max-width: 768px) {
+            .forum-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+                margin-bottom: var(--space-xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 隐藏式导航栏触发区 -->
+    <div class="nav-trigger-area"></div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar" style="background: rgba(246, 244, 237, 0.98);">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">大成智慧</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首 卷</a></li>
+                <li><a href="content.html">藏 经</a></li>
+                <li><a href="community.html" class="active">同 修</a></li>
+                <li><a href="https://github.com/Hujunchuan/Dacheng-Wisdom" target="_blank">知 识 库</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button title="搜索" class="hover-ink" id="btnSearch">🔍</button>
+                <button title="繁简切换" class="hover-ink" id="btnLang">繁</button>
+                <div style="width: 1px; height: 16px; background: var(--border-color); margin: 0 8px;"></div>
+                <!-- 模拟已登录状态的用户入口 -->
+                <a href="auth.html" title="个人主页" class="hover-ink" style="font-family: var(--font-serif); font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--accent-green); display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-family: var(--font-kai);">悟</div>
+                    <span>居士</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="community-header animate-fade-in">
+        <h1 style="font-family: 'Zhi Mang Xing', cursive; font-size: 64px; margin-bottom: var(--space-sm);">同 修</h1>
+        <p class="font-kai" style="color: var(--text-secondary); font-size: 20px; letter-spacing: 4px;">三人行，必有我师焉</p>
+    </div>
+
+    <main class="container forum-layout animate-slide-up" style="animation-delay: 0.2s;">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <button class="btn-write hover-ink">
+                <span>✐</span> 落笔提问
+            </button>
+            
+            <ul class="category-list">
+                <li class="category-item">
+                    <a href="#" class="category-link active">
+                        <span>全部机锋</span> <span class="category-count">108</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">
+                        <span>修行解惑</span> <span class="category-count">42</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">
+                        <span>公案探讨</span> <span class="category-count">27</span>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">
+                        <span>生活禅语</span> <span class="category-count">39</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 帖子列表区 -->
+        <section class="post-list">
+            
+            <!-- 帖子 1 -->
+            <article class="post-card">
+                <div class="post-meta">
+                    <div class="post-author">
+                        <div class="author-avatar">清</div>
+                        <span>清风徐来</span>
+                    </div>
+                    <span class="post-time">一炷香前</span>
+                </div>
+                <h3 class="post-title">打坐时总是杂念丛生，该如何观心？</h3>
+                <p class="post-excerpt">近来依《六祖坛经》所授之法尝试静坐体会。然双跏趺坐不过一盏茶的工夫，脑中便如脱缰野马，世俗琐事纷至沓来。越是想将念头压下，反弹之心便越重。各位同修前辈，不知当年初学打坐时，是如何度过这一关的？</p>
+                <div class="post-footer">
+                    <div class="post-stat">
+                        <span style="color: var(--accent-green);">💬</span> 12 回响
+                    </div>
+                    <div class="post-stat">
+                        <span>👁</span> 342 参阅
+                    </div>
+                    <div class="post-stat" style="margin-left: auto;">
+                        <span class="seal" style="width:24px; height:24px; font-size:10px; border-color:var(--text-light); color:var(--text-light); margin:0;">惑</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 帖子 2 -->
+            <article class="post-card">
+                <div class="post-meta">
+                    <div class="post-author">
+                        <div class="author-avatar" style="background: rgba(181, 68, 52, 0.1); color: var(--accent-red);">悟</div>
+                        <span style="color: var(--accent-red);">悟净沙弥 (法师)</span>
+                    </div>
+                    <span class="post-time">昨日辰时</span>
+                </div>
+                <h3 class="post-title">【法雨连载】《心经》的核心智慧：空与有的辩证法</h3>
+                <p class="post-excerpt">“色即是空，空即是色”，此八字可谓大乘佛教之灵魂。世人多将“空”误解为虚无主义，实则是对缘起性空的误读……本帖为系列连载之一，试以现代人之视角，重新解读心经奥义。</p>
+                <div class="post-footer">
+                    <div class="post-stat">
+                        <span style="color: var(--accent-green);">💬</span> 56 回响
+                    </div>
+                    <div class="post-stat">
+                        <span>👁</span> 1205 参阅
+                    </div>
+                    <div class="post-stat" style="margin-left: auto;">
+                        <span class="seal" style="width:24px; height:24px; font-size:10px; margin:0;">精</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 帖子 3 -->
+            <article class="post-card">
+                <div class="post-meta">
+                    <div class="post-author">
+                        <div class="author-avatar">半</div>
+                        <span>半日闲</span>
+                    </div>
+                    <span class="post-time">三日前</span>
+                </div>
+                <h3 class="post-title">分享一段在终南山隐居三日的日记</h3>
+                <p class="post-excerpt">山中岁月容易过，世上繁华已千年。放下手机的三天里，与清泉为伴，听松风入耳。才发现，原来人所需的并不多，一箪食一瓢饮，足矣。附上了几张山中云雾的照片，愿与有缘人共赏。</p>
+                <div class="post-footer">
+                    <div class="post-stat">
+                        <span style="color: var(--accent-green);">💬</span> 8 回响
+                    </div>
+                    <div class="post-stat">
+                        <span>👁</span> 210 参阅
+                    </div>
+                </div>
+            </article>
+
+            <!-- 分页 -->
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: var(--space-xl);">
+                <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink">上一卷</button>
+                <button style="padding: 8px 16px; background: var(--text-primary); color: var(--bg-color); border: none; cursor: pointer;" class="font-kai">1</button>
+                <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink">2</button>
+                <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink">3</button>
+                <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink">下一卷</button>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 大成智慧. 万法唯心造。</p>
+    </footer>
+
+</body>
+</html>

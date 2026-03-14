@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阅读 - 金刚般若波罗蜜经</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .reading-container {
+            max-width: 800px;
+            margin: 120px auto 100px;
+            padding: var(--space-xl);
+            background: var(--surface-color);
+            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        /* 模拟古籍页面折痕 */
+        .reading-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(224, 222, 200, 0.5), transparent);
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: var(--space-xxl);
+        }
+
+        .article-title {
+            font-size: 40px;
+            font-family: var(--font-kai);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            letter-spacing: 4px;
+        }
+
+        .article-meta {
+            font-size: 14px;
+            color: var(--text-light);
+            font-family: var(--font-serif);
+        }
+
+        .article-content {
+            font-size: 18px;
+            line-height: 2.4;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .article-content p {
+            margin-bottom: var(--space-lg);
+            text-indent: 2em; /* 首行缩进 */
+        }
+
+        .video-container {
+            margin: var(--space-xl) 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            background-color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 底部工具栏 */
+        .reader-tools {
+            position: fixed;
+            bottom: var(--space-xl);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--space-lg);
+            background: rgba(246, 244, 237, 0.95);
+            padding: 12px 32px;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .reader-tools button {
+            background: none;
+            border: none;
+            font-family: var(--font-kai);
+            font-size: 16px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reader-tools button:hover {
+            color: var(--accent-green);
+        }
+    </style>
+</head>
+<body>
+    <!-- 隐藏式导航栏触发区 -->
+    <div class="nav-trigger-area"></div>
+    
+    <!-- 极简导航 -->
+    <nav class="navbar" style="height: 60px; background: transparent; border-bottom: none;">
+        <div class="nav-container" style="justify-content: flex-start;">
+            <a href="index.html" class="hover-ink" style="display: flex; align-items: center; gap: 8px; font-family: var(--font-kai); color: var(--text-secondary);">
+                <span>←</span> 返回首页
+            </a>
+        </div>
+    </nav>
+
+    <main class="reading-container animate-fade-in">
+        <header class="article-header animate-slide-up">
+            <h1 class="article-title">金刚般若波罗蜜经</h1>
+            <div class="article-meta">
+                <span>姚秦三藏法师鸠摩罗什 译</span>
+                <span style="margin: 0 var(--space-md);">·</span>
+                <span>字数：5176</span>
+            </div>
+            <div class="seal" style="margin-top: var(--space-lg);">藏</div>
+        </header>
+
+        <article class="article-content animate-slide-up" style="animation-delay: 0.3s; opacity: 0;">
+            <!-- 音频播放器替代意境 -->
+            <div style="background: var(--bg-color); border: 1px solid var(--border-color); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-xl); border-radius: 4px;">
+                <span class="font-kai" style="color: var(--text-primary);">❖ 诵经音频导读</span>
+                <button style="background: none; border: 1px solid var(--accent-green); color: var(--accent-green); padding: 4px 16px; border-radius: 20px; font-family: var(--font-kai); cursor: pointer;" class="hover-ink">播放 ▷</button>
+            </div>
+
+            <p>如是我闻。一时佛在舍卫国。祇树给孤独园。与大比丘众。千二百五十人俱。尔时世尊。食时。著衣持钵。入舍卫大城乞食。于其城中。次第乞已。还至本处。饭食讫。收衣钵。洗足已。敷座而坐。</p>
+            
+            <p>时长老须菩提。在大众中。即从座起。偏袒右肩。右膝著地。合掌恭敬。而白佛言。希有世尊。如来善护念诸菩萨。善付嘱诸菩萨。世尊。善男子。善女人。发阿耨多罗三藐三菩提心。云何应住。云何降伏其心。佛言。善哉善哉。须菩提。如汝所说。如来善护念诸菩萨。善付嘱诸菩萨。汝今谛听。当为汝说。善男子。善女人。发阿耨多罗三藐三菩提心。应如是住。如是降伏其心。唯然世尊。愿乐欲闻。</p>
+            
+            <h3 style="text-align: center; margin: 40px 0; color: var(--text-primary); font-family: var(--font-kai);">大乘正宗分第三</h3>
+            
+            <p>佛告须菩提。诸菩萨摩诃萨。应如是降伏其心。所有一切众生之类。若卵生。若胎生。若湿生。若化生。若有色。若无色。若有想。若无想。若非有想。非无想。我皆令入无余涅槃而灭度之。如是灭度无量无数无边众生。实无众生得灭度者。何以故。须菩提。若菩萨有我相人相众生相寿者相。即非菩萨。</p>
+
+            <div class="video-container" title="法师开示视频">
+                <!-- 占位视频框 -->
+                <div style="position: absolute; top:0; left:0; right:0; bottom:0; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--surface-color); background: rgba(0,0,0,0.8);">
+                    <span style="font-size: 40px; margin-bottom: 20px;">▶</span>
+                    <span class="font-kai">静心观影：法师讲法录像</span>
+                </div>
+            </div>
+
+            <p>复次。须菩提。菩萨于法。应无所住。行于布施。所谓不住色布施。不住声香味触法布施。须菩提。菩萨应如是布施。不住于相。何以故。若菩萨不住相布施。其福德不可思量。须菩提。于意云何。东方虚空。可思量不。不也世尊。须菩提。南西北方。四维上下虚空。可思量不。不也世尊。须菩提。菩萨无住相布施。福德亦复如是不可思量。须菩提。菩萨但应如所教住。</p>
+            
+            <!-- 结尾印记 -->
+            <div style="text-align: center; margin-top: 60px;">
+                <div style="width: 40px; height: 1px; background: var(--text-light); margin: 0 auto 20px;"></div>
+                <span class="font-kai" style="color: var(--text-light);">愿以此功德，普及于一切</span>
+            </div>
+        </article>
+    </main>
+
+    <!-- 底部阅读工具栏 -->
+    <div class="reader-tools animate-slide-up" style="animation-delay: 0.6s;">
+        <button class="hover-ink" title="字号调节"><span>Aa</span></button>
+        <button class="hover-ink" title="夜间模式"><span>☾</span></button>
+        <button class="hover-ink" title="繁简切换"><span>繁</span></button>
+        <div style="width: 1px; height: 20px; background: var(--border-color); margin: 0 8px;"></div>
+        <button class="hover-ink" title="加入书签"><span>🔖</span></button>
+        <button class="hover-ink" title="分享"><span>🔗</span></button>
+    </div>
+
+</body>
+</html>

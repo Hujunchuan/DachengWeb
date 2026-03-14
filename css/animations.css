@@ -1,0 +1,114 @@
+/* Animations for Ancient Chinese Aesthetic */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatMisty {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.02);
+    }
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+@keyframes inkSpread {
+    from {
+        clip-path: circle(0% at 50% 50%);
+    }
+    to {
+        clip-path: circle(150% at 50% 50%);
+    }
+}
+
+@keyframes letterDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Base utilities for attaching animations */
+.animate-fade-in {
+    animation: fadeIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-up {
+    animation: slideUpFade 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.animate-float {
+    animation: floatMisty 10s ease-in-out infinite;
+}
+
+/* Staggered text delays for vertical writing (to simulate brush strokes) */
+.stagger-1 { animation-delay: 0.2s; opacity: 0; }
+.stagger-2 { animation-delay: 0.6s; opacity: 0; }
+.stagger-3 { animation-delay: 1.0s; opacity: 0; }
+.stagger-4 { animation-delay: 1.4s; opacity: 0; }
+
+.seal-appear {
+    animation: fadeIn 1s ease-in forwards;
+    animation-delay: 2.5s;
+    opacity: 0;
+    transform-origin: center;
+}
+
+/* Hover effects */
+.hover-ink {
+    position: relative;
+    overflow: hidden;
+}
+
+.hover-ink::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(92, 122, 107, 0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hover-ink:hover::after {
+    transform: translate(-50%, -50%) scale(3);
+}
+
+.hover-ink > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}

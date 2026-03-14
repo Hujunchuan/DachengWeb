@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法物 - 结缘下载</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .download-hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(246, 244, 237, 1) 0%, rgba(250, 250, 248, 1) 100%);
+        }
+
+        .hero-bg-graphic {
+            position: absolute;
+            right: -10%;
+            top: 10%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(92, 122, 107, 0.05) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .download-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xxl);
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .text-panel h1 {
+            font-family: 'Zhi Mang Xing', cursive;
+            font-size: 80px;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+
+        .text-panel p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            font-family: var(--font-kai);
+            letter-spacing: 2px;
+            margin-bottom: var(--space-xl);
+        }
+
+        .download-options {
+            display: flex;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: var(--font-kai);
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-download:hover {
+            border-color: var(--accent-green);
+            background: rgba(92, 122, 107, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn-download.primary {
+            background: var(--text-primary);
+            color: var(--surface-color);
+            border-color: var(--text-primary);
+        }
+
+        .btn-download.primary:hover {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+
+        .version-info {
+            font-size: 14px;
+            color: var(--text-light);
+            font-family: var(--font-serif);
+        }
+
+        /* 手机 Mockup 容器 */
+        .mockup-panel {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            border: 12px solid var(--text-primary);
+            border-radius: 40px;
+            background: var(--surface-color);
+            position: relative;
+            box-shadow: 20px 30px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* 手机内部屏幕画面占位 */
+        .phone-screen-content {
+            text-align: center;
+        }
+
+        /* 模拟禅文化页面 */
+        .phone-screen-bg {
+             background: linear-gradient(180deg, rgba(235, 233, 222, 1) 0%, rgba(246, 244, 237, 1) 100%);
+             position: absolute;
+             top: 0; left: 0; right: 0; bottom: 0;
+             z-index: -1;
+        }
+
+        .mockup-panel::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 20px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(4px);
+            z-index: -1;
+        }
+
+        /* 悬浮装饰物 */
+        .floating-element {
+            position: absolute;
+            font-family: var(--font-kai);
+            color: var(--text-light);
+            opacity: 0.5;
+            writing-mode: vertical-rl;
+            letter-spacing: 4px;
+        }
+
+        .float-1 { top: 20%; right: 10%; animation: floatMisty 8s infinite ease-in-out; }
+        .float-2 { bottom: 30%; left: 0%; animation: floatMisty 12s infinite ease-in-out reverse; }
+        
+        @media (max-width: 968px) {
+            .download-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .text-panel, .download-options {
+                justify-content: center;
+            }
+            .download-options {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 隐藏式导航栏触发区 -->
+    <div class="nav-trigger-area"></div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar" style="background: rgba(246, 244, 237, 0.98);">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">大成智慧</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首 卷</a></li>
+                <li><a href="content.html">藏 经</a></li>
+                <li><a href="community.html">同 修</a></li>
+                <li><a href="https://github.com/Hujunchuan/Dacheng-Wisdom" target="_blank">知 识 库</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="download-hero">
+        <div class="hero-bg-graphic"></div>
+        
+        <div class="container download-content">
+            <!-- 文字介绍左侧 -->
+            <div class="text-panel animate-slide-up">
+                <h1>随身道场</h1>
+                <p>无论身处繁华闹市，亦或深山幽谷。<br>方寸之间，静观自在。</p>
+                
+                <div class="download-options stagger-1 animate-slide-up">
+                    <button class="btn-download primary hover-ink">
+                        <span>🍏</span> <span>App Store</span>
+                    </button>
+                    <button class="btn-download hover-ink">
+                        <span>🤖</span> <span>安卓版结缘 (APK)</span>
+                    </button>
+                    <button class="btn-download hover-ink">
+                        <span>📱</span> <span>扫码下载</span>
+                    </button>
+                </div>
+                
+                <div class="version-info stagger-2 animate-slide-up">
+                    <p>当前卷宗：V 3.0.1 (慧根初具)</p>
+                    <p>更新日志：新增了“离线听经”与“打坐香板”功能，修复了部分机型无法保存修行记录的问题。</p>
+                </div>
+            </div>
+
+            <!-- 手机 Mockup 右侧 -->
+            <div class="mockup-panel animate-fade-in" style="animation-delay: 0.4s; opacity: 0;">
+                <div class="floating-element float-1">菩提本无树</div>
+                <div class="floating-element float-2">明镜亦非台</div>
+                
+                <div class="phone-mockup">
+                    <div class="phone-screen-bg"></div>
+                    <!-- 模拟刘海/摄像头 -->
+                    <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 24px; background: var(--text-primary); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;"></div>
+                    
+                    <div class="phone-screen-content">
+                         <div style="font-family: 'Zhi Mang Xing', cursive; font-size: 36px; margin-bottom: 20px; color: var(--text-primary);">早课</div>
+                         <div style="width: 100px; height: 100px; border-radius: 50%; border: 2px dashed var(--accent-green); margin: 0 auto 30px; display: flex; align-items:center; justify-content:center; color: var(--accent-green);">
+                             <span style="font-family: var(--font-kai); font-size: 40px;">静</span>
+                         </div>
+                         <p style="font-family: var(--font-kai); font-size: 14px; color: var(--text-secondary);">今日已静坐: 45 分钟</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer class="footer" style="margin-top: 0; border-top: none; background: var(--bg-color);">
+        <p>&copy; 2026 大成智慧. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
