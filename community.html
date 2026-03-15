@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>同修 - 禅修问答与交流</title>
+    <title data-i18n="community.title">社区 - 交流与共建</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/modals.css">
     <style>
         .community-header {
             padding: var(--space-xxl) 0 var(--space-lg);
@@ -209,58 +210,59 @@
     <nav class="navbar" style="background: rgba(246, 244, 237, 0.98);">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">大成智慧</a>
+                <a href="index.html" data-i18n="common.brand.dacheng">大成智慧</a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">首 卷</a></li>
-                <li><a href="content.html">AI</a></li>
-                <li><a href="community.html" class="active">社区</a></li>
-                <li><a href="https://github.com/Hujunchuan/Dacheng-Wisdom" target="_blank">知 识 库</a></li>
+                <li><a href="index.html" data-i18n="common.nav.home">首 卷</a></li>
+                <li><a href="content.html" data-i18n="common.nav.ai">AI</a></li>
+                <li><a href="community.html" class="active" data-i18n="common.nav.community">社区</a></li>
+                <li><a href="download.html" data-i18n="common.nav.download">下载</a></li>
+                <li><a href="auth.html" data-i18n="common.nav.knowledge">知 识 库</a></li>
             </ul>
             <div class="nav-controls">
-                <button title="搜索" class="hover-ink" id="btnSearch">🔍</button>
-                <button title="繁简切换" class="hover-ink" id="btnLang">繁</button>
+                <button title="搜索" class="hover-ink" id="btnSearch" data-i18n-title="common.ui.search">🔍</button>
+                <button type="button" title="切换语言" class="hover-ink" id="btnLang" data-lang-trigger data-i18n-title="common.ui.language">EN</button>
                 <div style="width: 1px; height: 16px; background: var(--border-color); margin: 0 8px;"></div>
                 <!-- 模拟已登录状态的用户入口 -->
                 <a href="auth.html" title="个人主页" class="hover-ink" style="font-family: var(--font-serif); font-size: 14px; display: flex; align-items: center; gap: 8px;">
                     <div style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--accent-green); display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-family: var(--font-kai);">悟</div>
-                    <span>居士</span>
+                    <span data-i18n="common.nav.account">居士</span>
                 </a>
             </div>
         </div>
     </nav>
 
     <div class="community-header animate-fade-in">
-        <h1 style="font-family: 'Zhi Mang Xing', cursive; font-size: 64px; margin-bottom: var(--space-sm);">同 修</h1>
-        <p class="font-kai" style="color: var(--text-secondary); font-size: 20px; letter-spacing: 4px;">三人行，必有我师焉</p>
+        <h1 style="font-family: 'Zhi Mang Xing', cursive; font-size: 64px; margin-bottom: var(--space-sm);" data-i18n="community.header.title">社区</h1>
+        <p class="font-kai" style="color: var(--text-secondary); font-size: 20px; letter-spacing: 4px;" data-i18n="community.header.subtitle">交流、提问、记录与同行</p>
     </div>
 
     <main class="container forum-layout animate-slide-up" style="animation-delay: 0.2s;">
         <!-- 侧边栏 -->
         <aside class="sidebar">
             <button class="btn-write hover-ink">
-                <span>✐</span> 落笔提问
+                <span data-i18n="community.write">✐ 发起讨论</span>
             </button>
             
             <ul class="category-list">
                 <li class="category-item">
                     <a href="#" class="category-link active">
-                        <span>全部机锋</span> <span class="category-count">108</span>
+                        <span data-i18n="community.category.all">全部讨论</span> <span class="category-count">108</span>
                     </a>
                 </li>
                 <li class="category-item">
                     <a href="#" class="category-link">
-                        <span>修行解惑</span> <span class="category-count">42</span>
+                        <span data-i18n="community.category.practice">练习问答</span> <span class="category-count">42</span>
                     </a>
                 </li>
                 <li class="category-item">
                     <a href="#" class="category-link">
-                        <span>公案探讨</span> <span class="category-count">27</span>
+                        <span data-i18n="community.category.case">案例拆解</span> <span class="category-count">27</span>
                     </a>
                 </li>
                 <li class="category-item">
                     <a href="#" class="category-link">
-                        <span>生活禅语</span> <span class="category-count">39</span>
+                        <span data-i18n="community.category.life">生活笔记</span> <span class="category-count">39</span>
                     </a>
                 </li>
             </ul>
@@ -276,17 +278,13 @@
                         <div class="author-avatar">清</div>
                         <span>清风徐来</span>
                     </div>
-                    <span class="post-time">一炷香前</span>
+                    <span class="post-time" data-i18n="community.post1.time">一炷香前</span>
                 </div>
-                <h3 class="post-title">打坐时总是杂念丛生，该如何观心？</h3>
-                <p class="post-excerpt">近来依《六祖坛经》所授之法尝试静坐体会。然双跏趺坐不过一盏茶的工夫，脑中便如脱缰野马，世俗琐事纷至沓来。越是想将念头压下，反弹之心便越重。各位同修前辈，不知当年初学打坐时，是如何度过这一关的？</p>
+                <h3 class="post-title" data-i18n="community.post1.title">练习时总是走神，该怎么重新拉回注意力？</h3>
+                <p class="post-excerpt" data-i18n="community.post1.excerpt">最近开始做每日 10 分钟的呼吸练习，但一坐下就容易想到工作和消息。越想让自己专注，越会被打断。大家有没有更温和、可持续的练习方法？</p>
                 <div class="post-footer">
-                    <div class="post-stat">
-                        <span style="color: var(--accent-green);">💬</span> 12 回响
-                    </div>
-                    <div class="post-stat">
-                        <span>👁</span> 342 参阅
-                    </div>
+                    <div class="post-stat" data-i18n-html="community.post1.stats"><span style="color: var(--accent-green);">💬</span> 12 回响</div>
+                    <div class="post-stat" data-i18n-html="community.post1.views"><span>👁</span> 342 参阅</div>
                     <div class="post-stat" style="margin-left: auto;">
                         <span class="seal" style="width:24px; height:24px; font-size:10px; border-color:var(--text-light); color:var(--text-light); margin:0;">惑</span>
                     </div>
@@ -300,17 +298,13 @@
                         <div class="author-avatar" style="background: rgba(181, 68, 52, 0.1); color: var(--accent-red);">悟</div>
                         <span style="color: var(--accent-red);">悟净沙弥 (法师)</span>
                     </div>
-                    <span class="post-time">昨日辰时</span>
+                    <span class="post-time" data-i18n="community.post2.time">昨日辰时</span>
                 </div>
-                <h3 class="post-title">【法雨连载】《心经》的核心智慧：空与有的辩证法</h3>
-                <p class="post-excerpt">“色即是空，空即是色”，此八字可谓大乘佛教之灵魂。世人多将“空”误解为虚无主义，实则是对缘起性空的误读……本帖为系列连载之一，试以现代人之视角，重新解读心经奥义。</p>
+                <h3 class="post-title" data-i18n="community.post2.title">【方法连载】如何把抽象的练习拆成日常可执行动作</h3>
+                <p class="post-excerpt" data-i18n="community.post2.excerpt">很多人知道训练重要，但不知道如何开始。本帖尝试把“觉察、回到当下、稳定节奏”拆成几个可以每天实践的小动作，适合新手先走通第一步。</p>
                 <div class="post-footer">
-                    <div class="post-stat">
-                        <span style="color: var(--accent-green);">💬</span> 56 回响
-                    </div>
-                    <div class="post-stat">
-                        <span>👁</span> 1205 参阅
-                    </div>
+                    <div class="post-stat" data-i18n-html="community.post2.stats"><span style="color: var(--accent-green);">💬</span> 56 回响</div>
+                    <div class="post-stat" data-i18n-html="community.post2.views"><span>👁</span> 1205 参阅</div>
                     <div class="post-stat" style="margin-left: auto;">
                         <span class="seal" style="width:24px; height:24px; font-size:10px; margin:0;">精</span>
                     </div>
@@ -324,35 +318,41 @@
                         <div class="author-avatar">半</div>
                         <span>半日闲</span>
                     </div>
-                    <span class="post-time">三日前</span>
+                    <span class="post-time" data-i18n="community.post3.time">三日前</span>
                 </div>
-                <h3 class="post-title">分享一段在终南山隐居三日的日记</h3>
-                <p class="post-excerpt">山中岁月容易过，世上繁华已千年。放下手机的三天里，与清泉为伴，听松风入耳。才发现，原来人所需的并不多，一箪食一瓢饮，足矣。附上了几张山中云雾的照片，愿与有缘人共赏。</p>
+                <h3 class="post-title" data-i18n="community.post3.title">分享一次断开手机提醒后的三天观察</h3>
+                <p class="post-excerpt" data-i18n="community.post3.excerpt">把通知全部关闭三天后，我开始更清楚地看见自己在焦虑和空闲之间来回切换。记录这次经历，想听听大家怎么处理碎片化注意力。</p>
                 <div class="post-footer">
-                    <div class="post-stat">
-                        <span style="color: var(--accent-green);">💬</span> 8 回响
-                    </div>
-                    <div class="post-stat">
-                        <span>👁</span> 210 参阅
-                    </div>
+                    <div class="post-stat" data-i18n-html="community.post3.stats"><span style="color: var(--accent-green);">💬</span> 8 回响</div>
+                    <div class="post-stat" data-i18n-html="community.post3.views"><span>👁</span> 210 参阅</div>
                 </div>
             </article>
 
             <!-- 分页 -->
             <div style="display: flex; justify-content: center; gap: 8px; margin-top: var(--space-xl);">
-                <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink">上一卷</button>
+                <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink" data-i18n="community.pagination.prev">上一页</button>
                 <button style="padding: 8px 16px; background: var(--text-primary); color: var(--bg-color); border: none; cursor: pointer;" class="font-kai">1</button>
                 <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink">2</button>
                 <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink">3</button>
-                <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink">下一卷</button>
+                <button style="padding: 8px 16px; background: none; border: 1px solid var(--border-color); cursor: pointer;" class="font-kai hover-ink" data-i18n="community.pagination.next">下一页</button>
             </div>
 
         </section>
     </main>
 
+    <div class="overlay-modal" id="searchModal">
+        <button class="modal-close" type="button" data-close-modal="searchModal">✕</button>
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <input type="text" class="search-input" data-i18n-placeholder="common.search.placeholder" placeholder="输入关键字..." autofocus>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
-        <p>&copy; 2026 大成智慧. 万法唯心造。</p>
+        <p data-i18n="community.footer">&copy; 2026 大成智慧. 让成长更可交流。</p>
     </footer>
 
+    <script src="js/site.js"></script>
 </body>
 </html>

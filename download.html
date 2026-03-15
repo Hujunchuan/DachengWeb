@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>法物 - 结缘下载</title>
+    <title data-i18n="download.title">下载 - 止观 AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/modals.css">
     <style>
         .download-hero {
             position: relative;
@@ -187,14 +188,18 @@
     <nav class="navbar" style="background: rgba(246, 244, 237, 0.98);">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">大成智慧</a>
+                <a href="index.html" data-i18n="common.brand.dacheng">大成智慧</a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">首 卷</a></li>
-                <li><a href="content.html">AI</a></li>
-                <li><a href="community.html">社区</a></li>
-                <li><a href="https://github.com/Hujunchuan/Dacheng-Wisdom" target="_blank">知 识 库</a></li>
+                <li><a href="index.html" data-i18n="common.nav.home">首 卷</a></li>
+                <li><a href="content.html" data-i18n="common.nav.ai">AI</a></li>
+                <li><a href="community.html" data-i18n="common.nav.community">社区</a></li>
+                <li><a href="download.html" class="active" data-i18n="common.nav.download">下载</a></li>
+                <li><a href="auth.html" data-i18n="common.nav.knowledge">知 识 库</a></li>
             </ul>
+            <div class="nav-controls">
+                <button type="button" title="切换语言" class="hover-ink" id="btnLang" data-lang-trigger data-i18n-title="common.ui.language">EN</button>
+            </div>
         </div>
     </nav>
 
@@ -204,31 +209,31 @@
         <div class="container download-content">
             <!-- 文字介绍左侧 -->
             <div class="text-panel animate-slide-up">
-                <h1>随身道场</h1>
-                <p>无论身处繁华闹市，亦或深山幽谷。<br>方寸之间，静观自在。</p>
+                <h1 data-i18n="download.hero.title">随身练习</h1>
+                <p data-i18n-html="download.hero.desc">无论身处繁华闹市，亦或安静角落。<br>在更小的空间里，也能开始稳定而持续的练习。</p>
                 
                 <div class="download-options stagger-1 animate-slide-up">
-                    <button class="btn-download primary hover-ink">
-                        <span>🍏</span> <span>App Store</span>
+                    <button class="btn-download primary hover-ink" type="button">
+                        <span data-i18n="download.store.ios">🍏 App Store</span>
                     </button>
-                    <button class="btn-download hover-ink">
-                        <span>🤖</span> <span>安卓版结缘 (APK)</span>
+                    <button class="btn-download hover-ink" type="button">
+                        <span data-i18n="download.store.android">🤖 Android APK</span>
                     </button>
-                    <button class="btn-download hover-ink">
-                        <span>📱</span> <span>扫码下载</span>
+                    <button class="btn-download hover-ink" type="button">
+                        <span data-i18n="download.store.qr">📱 扫码下载</span>
                     </button>
                 </div>
                 
                 <div class="version-info stagger-2 animate-slide-up">
-                    <p>当前卷宗：V 3.0.1 (慧根初具)</p>
-                    <p>更新日志：新增了“离线听经”与“打坐香板”功能，修复了部分机型无法保存修行记录的问题。</p>
+                    <p data-i18n="download.version.current">当前版本：V 3.0.1 (原型预览)</p>
+                    <p data-i18n="download.version.log">更新日志：新增首页互动终端、统一导航入口，并为 AI 与知识库能力预留后续升级位。</p>
                 </div>
             </div>
 
             <!-- 手机 Mockup 右侧 -->
             <div class="mockup-panel animate-fade-in" style="animation-delay: 0.4s; opacity: 0;">
-                <div class="floating-element float-1">菩提本无树</div>
-                <div class="floating-element float-2">明镜亦非台</div>
+                <div class="floating-element float-1" data-i18n="download.float1">菩提本无树</div>
+                <div class="floating-element float-2" data-i18n="download.float2">明镜亦非台</div>
                 
                 <div class="phone-mockup">
                     <div class="phone-screen-bg"></div>
@@ -236,11 +241,11 @@
                     <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 24px; background: var(--text-primary); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;"></div>
                     
                     <div class="phone-screen-content">
-                         <div style="font-family: 'Zhi Mang Xing', cursive; font-size: 36px; margin-bottom: 20px; color: var(--text-primary);">早课</div>
+                         <div style="font-family: 'Zhi Mang Xing', cursive; font-size: 36px; margin-bottom: 20px; color: var(--text-primary);" data-i18n="download.mockup.title">早课</div>
                          <div style="width: 100px; height: 100px; border-radius: 50%; border: 2px dashed var(--accent-green); margin: 0 auto 30px; display: flex; align-items:center; justify-content:center; color: var(--accent-green);">
-                             <span style="font-family: var(--font-kai); font-size: 40px;">静</span>
+                             <span style="font-family: var(--font-kai); font-size: 40px;" data-i18n="download.mockup.center">静</span>
                          </div>
-                         <p style="font-family: var(--font-kai); font-size: 14px; color: var(--text-secondary);">今日已静坐: 45 分钟</p>
+                         <p style="font-family: var(--font-kai); font-size: 14px; color: var(--text-secondary);" data-i18n="download.mockup.time">今日已练习：45 分钟</p>
                     </div>
                 </div>
             </div>
@@ -248,8 +253,11 @@
     </header>
 
     <footer class="footer" style="margin-top: 0; border-top: none; background: var(--bg-color);">
-        <p>&copy; 2026 大成智慧. All Rights Reserved.</p>
+        <p data-i18n="download.footer">&copy; 2026 大成智慧. All Rights Reserved.</p>
     </footer>
 
+    <script src="js/site.js"></script>
 </body>
 </html>
+
+

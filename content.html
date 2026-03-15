@@ -3,187 +3,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>阅读 - 金刚般若波罗蜜经</title>
+    <title data-i18n="ai.title">AI - 止观 AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/modals.css">
     <style>
-        .reading-container {
-            max-width: 800px;
-            margin: 120px auto 100px;
-            padding: var(--space-xl);
+        .ai-shell {
+            padding: 140px 0 100px;
+        }
+
+        .ai-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+            gap: var(--space-xl);
+            align-items: start;
+        }
+
+        .ai-panel,
+        .chat-panel {
             background: var(--surface-color);
-            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.03);
             border: 1px solid var(--border-color);
-            position: relative;
+            border-radius: 28px;
+            box-shadow: 0 16px 40px rgba(26, 26, 26, 0.04);
         }
 
-        /* 模拟古籍页面折痕 */
-        .reading-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(224, 222, 200, 0.5), transparent);
+        .ai-panel {
+            padding: 40px 36px;
+            position: sticky;
+            top: 120px;
         }
 
-        .article-header {
-            text-align: center;
-            margin-bottom: var(--space-xxl);
-        }
-
-        .article-title {
-            font-size: 40px;
-            font-family: var(--font-kai);
-            color: var(--text-primary);
-            margin-bottom: var(--space-md);
-            letter-spacing: 4px;
-        }
-
-        .article-meta {
-            font-size: 14px;
-            color: var(--text-light);
-            font-family: var(--font-serif);
-        }
-
-        .article-content {
-            font-size: 18px;
-            line-height: 2.4;
-            color: var(--text-secondary);
-            text-align: justify;
-        }
-
-        .article-content p {
-            margin-bottom: var(--space-lg);
-            text-indent: 2em; /* 首行缩进 */
-        }
-
-        .video-container {
-            margin: var(--space-xl) 0;
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 比例 */
-            height: 0;
-            overflow: hidden;
-            background-color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-        }
-
-        .video-container iframe,
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* 底部工具栏 */
-        .reader-tools {
-            position: fixed;
-            bottom: var(--space-xl);
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: var(--space-lg);
-            background: rgba(246, 244, 237, 0.95);
-            padding: 12px 32px;
-            border-radius: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            z-index: 100;
-        }
-
-        .reader-tools button {
-            background: none;
-            border: none;
-            font-family: var(--font-kai);
-            font-size: 16px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: color 0.3s;
-            display: flex;
+        .ai-badge {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(92, 122, 107, 0.08);
+            color: var(--accent-green);
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
         }
 
-        .reader-tools button:hover {
+        .ai-title {
+            font-size: 42px;
+            line-height: 1.35;
+            margin-bottom: 18px;
+        }
+
+        .ai-desc {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+        }
+
+        .ai-note {
+            padding: 18px 20px;
+            border-radius: 16px;
+            background: rgba(26, 26, 26, 0.03);
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .ai-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .chat-panel {
+            padding: 32px;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .chat-title {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .chat-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 560px;
+        }
+
+        .chat-status {
+            min-width: 150px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(92, 122, 107, 0.08);
             color: var(--accent-green);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .chat-window {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 360px;
+            max-height: 520px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .chat-message {
+            max-width: 78%;
+            padding: 16px 18px;
+            border-radius: 18px;
+            line-height: 1.8;
+            font-size: 15px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .chat-message.assistant {
+            align-self: flex-start;
+            background: rgba(92, 122, 107, 0.08);
+            border: 1px solid rgba(92, 122, 107, 0.12);
+            color: var(--text-primary);
+        }
+
+        .chat-message.user {
+            align-self: flex-end;
+            background: var(--text-primary);
+            color: var(--surface-color);
+        }
+
+        .chat-prompt-block {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .chat-prompt-title {
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .chat-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .chat-prompt {
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            font-family: var(--font-serif);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chat-prompt:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            background: rgba(92, 122, 107, 0.05);
+        }
+
+        .chat-composer {
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 16px 18px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            background: rgba(250, 250, 248, 0.8);
+            font-family: var(--font-serif);
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        .chat-disclaimer {
+            margin-top: 14px;
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 980px) {
+            .ai-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-panel {
+                position: static;
+            }
+
+            .chat-header {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .ai-shell {
+                padding-top: 120px;
+            }
+
+            .ai-panel,
+            .chat-panel {
+                padding: 24px;
+            }
+
+            .ai-title {
+                font-size: 34px;
+            }
+
+            .chat-message {
+                max-width: 100%;
+            }
+
+            .chat-composer {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 隐藏式导航栏触发区 -->
     <div class="nav-trigger-area"></div>
-    
-    <!-- 极简导航 -->
-    <nav class="navbar" style="height: 60px; background: transparent; border-bottom: none;">
-        <div class="nav-container" style="justify-content: flex-start;">
-            <a href="index.html" class="hover-ink" style="display: flex; align-items: center; gap: 8px; font-family: var(--font-kai); color: var(--text-secondary);">
-                <span>←</span> 返回首页
-            </a>
+
+    <nav class="navbar" style="background: rgba(246, 244, 237, 0.98);">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" data-i18n="common.brand.zhiguan">止观 AI</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-i18n="common.nav.home">首 卷</a></li>
+                <li><a href="content.html" class="active" data-i18n="common.nav.ai">AI</a></li>
+                <li><a href="community.html" data-i18n="common.nav.community">社区</a></li>
+                <li><a href="download.html" data-i18n="common.nav.download">下载</a></li>
+                <li><a href="auth.html" data-i18n="common.nav.knowledge">知 识 库</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button type="button" title="切换语言" class="hover-ink" id="btnLang" data-lang-trigger data-i18n-title="common.ui.language">EN</button>
+                <div style="width: 1px; height: 16px; background: var(--border-color); margin: 0 8px;"></div>
+                <a href="auth.html" title="个人主页" class="hover-ink" style="font-family: var(--font-serif); font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--accent-green); display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-family: var(--font-kai);">AI</div>
+                    <span data-i18n="common.nav.account">居士</span>
+                </a>
+            </div>
         </div>
     </nav>
 
-    <main class="reading-container animate-fade-in">
-        <header class="article-header animate-slide-up">
-            <h1 class="article-title">金刚般若波罗蜜经</h1>
-            <div class="article-meta">
-                <span>姚秦三藏法师鸠摩罗什 译</span>
-                <span style="margin: 0 var(--space-md);">·</span>
-                <span>字数：5176</span>
-            </div>
-            <div class="seal" style="margin-top: var(--space-lg);">藏</div>
-        </header>
-
-        <article class="article-content animate-slide-up" style="animation-delay: 0.3s; opacity: 0;">
-            <!-- 音频播放器替代意境 -->
-            <div style="background: var(--bg-color); border: 1px solid var(--border-color); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-xl); border-radius: 4px;">
-                <span class="font-kai" style="color: var(--text-primary);">❖ 诵经音频导读</span>
-                <button style="background: none; border: 1px solid var(--accent-green); color: var(--accent-green); padding: 4px 16px; border-radius: 20px; font-family: var(--font-kai); cursor: pointer;" class="hover-ink">播放 ▷</button>
-            </div>
-
-            <p>如是我闻。一时佛在舍卫国。祇树给孤独园。与大比丘众。千二百五十人俱。尔时世尊。食时。著衣持钵。入舍卫大城乞食。于其城中。次第乞已。还至本处。饭食讫。收衣钵。洗足已。敷座而坐。</p>
-            
-            <p>时长老须菩提。在大众中。即从座起。偏袒右肩。右膝著地。合掌恭敬。而白佛言。希有世尊。如来善护念诸菩萨。善付嘱诸菩萨。世尊。善男子。善女人。发阿耨多罗三藐三菩提心。云何应住。云何降伏其心。佛言。善哉善哉。须菩提。如汝所说。如来善护念诸菩萨。善付嘱诸菩萨。汝今谛听。当为汝说。善男子。善女人。发阿耨多罗三藐三菩提心。应如是住。如是降伏其心。唯然世尊。愿乐欲闻。</p>
-            
-            <h3 style="text-align: center; margin: 40px 0; color: var(--text-primary); font-family: var(--font-kai);">大乘正宗分第三</h3>
-            
-            <p>佛告须菩提。诸菩萨摩诃萨。应如是降伏其心。所有一切众生之类。若卵生。若胎生。若湿生。若化生。若有色。若无色。若有想。若无想。若非有想。非无想。我皆令入无余涅槃而灭度之。如是灭度无量无数无边众生。实无众生得灭度者。何以故。须菩提。若菩萨有我相人相众生相寿者相。即非菩萨。</p>
-
-            <div class="video-container" title="法师开示视频">
-                <!-- 占位视频框 -->
-                <div style="position: absolute; top:0; left:0; right:0; bottom:0; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--surface-color); background: rgba(0,0,0,0.8);">
-                    <span style="font-size: 40px; margin-bottom: 20px;">▶</span>
-                    <span class="font-kai">静心观影：法师讲法录像</span>
+    <main class="ai-shell">
+        <div class="container ai-layout">
+            <section class="ai-panel animate-slide-up">
+                <div class="ai-badge" data-i18n="ai.badge">AI 共修原型</div>
+                <h1 class="ai-title font-kai" data-i18n="ai.hero.title">与 AI 一起练习专注、观照与成长</h1>
+                <p class="ai-desc" data-i18n="ai.hero.desc">当前页面是一个前端伪聊天原型，用来预演未来的共修体验。你可以通过预设问题或输入自己的想法，感受未来 AI 入口的对话方式。</p>
+                <div class="ai-note" data-i18n="ai.hero.note">知识库不会直接公开展示，登录后才会开放相关内容与引用能力。</div>
+                <div class="ai-actions">
+                    <a class="btn-cta primary" href="auth.html" data-i18n="ai.hero.login">登录查看知识库</a>
+                    <a class="btn-cta" href="community.html" data-i18n="ai.hero.community">去社区看看</a>
                 </div>
-            </div>
+            </section>
 
-            <p>复次。须菩提。菩萨于法。应无所住。行于布施。所谓不住色布施。不住声香味触法布施。须菩提。菩萨应如是布施。不住于相。何以故。若菩萨不住相布施。其福德不可思量。须菩提。于意云何。东方虚空。可思量不。不也世尊。须菩提。南西北方。四维上下虚空。可思量不。不也世尊。须菩提。菩萨无住相布施。福德亦复如是不可思量。须菩提。菩萨但应如所教住。</p>
-            
-            <!-- 结尾印记 -->
-            <div style="text-align: center; margin-top: 60px;">
-                <div style="width: 40px; height: 1px; background: var(--text-light); margin: 0 auto 20px;"></div>
-                <span class="font-kai" style="color: var(--text-light);">愿以此功德，普及于一切</span>
-            </div>
-        </article>
+            <section class="chat-panel animate-fade-in">
+                <div class="chat-header">
+                    <div>
+                        <h2 class="chat-title font-kai" data-i18n="ai.chat.title">共修对话窗口</h2>
+                        <p class="chat-desc" data-i18n="ai.chat.desc">这里展示的是原型交互，不会发送真实请求，也不会保存对话。</p>
+                    </div>
+                    <div class="chat-status" data-i18n="ai.status">当前状态：可体验对话壳、预设回复与知识库入口逻辑。</div>
+                </div>
+
+                <div class="chat-window" id="chatWindow" aria-live="polite"></div>
+
+                <div class="chat-prompt-block">
+                    <div class="chat-prompt-title" data-i18n="ai.suggestions.title">可以从这些问题开始</div>
+                    <div class="chat-prompts">
+                        <button class="chat-prompt" type="button" data-prompt-key="calm" data-i18n="ai.suggestion.1">我总是很难安静下来</button>
+                        <button class="chat-prompt" type="button" data-prompt-key="today" data-i18n="ai.suggestion.2">给我一个今天能开始的练习</button>
+                        <button class="chat-prompt" type="button" data-prompt-key="five" data-i18n="ai.suggestion.3">如果只有 5 分钟，我能做什么？</button>
+                        <button class="chat-prompt" type="button" data-prompt-key="knowledge" data-i18n="ai.suggestion.4">知识库为什么要登录后开放？</button>
+                    </div>
+
+                    <form class="chat-composer" id="chatComposer">
+                        <input class="chat-input" id="chatInput" type="text" data-i18n-placeholder="ai.input.placeholder" placeholder="输入一个问题，体验原型对话..." autocomplete="off">
+                        <button class="btn-cta primary" type="submit" data-i18n="ai.send">发送</button>
+                    </form>
+                    <p class="chat-disclaimer" data-i18n="ai.disclaimer">演示说明：当前仅为前端原型，不连接真实 AI、账号系统或知识库。</p>
+                </div>
+            </section>
+        </div>
     </main>
 
-    <!-- 底部阅读工具栏 -->
-    <div class="reader-tools animate-slide-up" style="animation-delay: 0.6s;">
-        <button class="hover-ink" title="字号调节"><span>Aa</span></button>
-        <button class="hover-ink" title="夜间模式"><span>☾</span></button>
-        <button class="hover-ink" title="繁简切换"><span>繁</span></button>
-        <div style="width: 1px; height: 20px; background: var(--border-color); margin: 0 8px;"></div>
-        <button class="hover-ink" title="加入书签"><span>🔖</span></button>
-        <button class="hover-ink" title="分享"><span>🔗</span></button>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatComposer = document.getElementById('chatComposer');
+            const chatInput = document.getElementById('chatInput');
+            const promptButtons = document.querySelectorAll('.chat-prompt');
 
+            const chatCopy = {
+                'zh-CN': {
+                    starters: [
+                        { role: 'assistant', text: '欢迎来到 AI 共修原型。你可以把这里当成未来入口的预演：先提问、再获得引导、最后回到自己的练习。' },
+                        { role: 'assistant', text: '如果你还不知道从哪里开始，可以先点击下方的问题按钮。' },
+                        { role: 'assistant', text: '知识库相关内容会在登录后开放，但当前也会先告诉你它将如何工作。' }
+                    ],
+                    prompts: {
+                        calm: {
+                            user: '我总是很难安静下来',
+                            reply: '先不要急着追求“安静”。你可以从 3 分钟开始，只观察呼吸有没有变浅、肩膀有没有紧、注意力什么时候跑开。训练的第一步不是压住念头，而是看见它。'
+                        },
+                        today: {
+                            user: '给我一个今天能开始的练习',
+                            reply: '今天先做一个最小练习：找一个不会被打扰的地方，坐下 5 分钟，只做两件事：感觉呼吸，发现走神就回来。结束后写下一句观察。'
+                        },
+                        five: {
+                            user: '如果只有 5 分钟，我能做什么？',
+                            reply: '可以做一个 5 分钟版本：1 分钟安顿身体，3 分钟观察呼吸，1 分钟记录现在的状态。时间很短也没关系，稳定比强度更重要。'
+                        },
+                        knowledge: {
+                            user: '知识库为什么要登录后开放？',
+                            reply: '因为知识库未来不只是公开资料页，而是会与个人练习记录、引用内容和后续私有能力联动。当前原型先把入口逻辑收口到登录页。'
+                        }
+                    },
+                    fallback: '这是一个演示原型，所以我现在会给出预置式回应：你的问题很适合进入“AI + 知识库 + 个人成长记录”的闭环，后续版本会把这些连接起来。'
+                },
+                en: {
+                    starters: [
+                        { role: 'assistant', text: 'Welcome to the AI practice prototype. Think of this as a preview of the future entry point: ask first, receive guidance, then return to your own practice.' },
+                        { role: 'assistant', text: 'If you do not know where to begin, start with one of the suggested prompts below.' },
+                        { role: 'assistant', text: 'The knowledge area will open after sign-in, but this prototype can already show how the flow is meant to work.' }
+                    ],
+                    prompts: {
+                        calm: {
+                            user: 'I cannot settle down at all',
+                            reply: 'Do not chase perfect stillness yet. Start with three minutes and simply notice your breathing, your shoulders, and the moment your attention drifts. The first step is not suppression. It is noticing.'
+                        },
+                        today: {
+                            user: 'Give me one practice I can do today',
+                            reply: 'Try the smallest useful version today: sit somewhere quiet for five minutes, feel the breath, and each time you drift, return once. Then write down one sentence about what you noticed.'
+                        },
+                        five: {
+                            user: 'What can I do if I only have 5 minutes?',
+                            reply: 'Use a five-minute structure: 1 minute to settle the body, 3 minutes to watch the breath, and 1 minute to record your state. Short is fine. Consistency matters more than intensity.'
+                        },
+                        knowledge: {
+                            user: 'Why is the knowledge area sign-in only?',
+                            reply: 'Because the knowledge area is meant to connect with personal practice records, references, and later private features. In this prototype, the entry flow is already aligned through sign-in.'
+                        }
+                    },
+                    fallback: 'This is only a prototype, so the reply is preset for now: your question fits the future loop of AI guidance, knowledge support, and personal growth records.'                }
+            };
+
+            const detectPromptKey = (value) => {
+                const normalized = value.toLowerCase();
+                if (normalized.includes('5')) return 'five';
+                if (normalized.includes('安静') || normalized.includes('settle')) return 'calm';
+                if (normalized.includes('今天') || normalized.includes('today')) return 'today';
+                if (normalized.includes('知识库') || normalized.includes('knowledge')) return 'knowledge';
+                return null;
+            };
+
+            const appendMessage = (role, text) => {
+                const bubble = document.createElement('div');
+                bubble.className = `chat-message ${role}`;
+                bubble.textContent = text;
+                chatWindow.appendChild(bubble);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            };
+
+            const currentLang = () => {
+                return localStorage.getItem('site-language') === 'en' ? 'en' : 'zh-CN';
+            };
+
+            const renderStarters = () => {
+                chatWindow.innerHTML = '';
+                chatCopy[currentLang()].starters.forEach((entry) => appendMessage(entry.role, entry.text));
+            };
+
+            const respond = (text, promptKey) => {
+                const lang = currentLang();
+                const pack = chatCopy[lang];
+                const key = promptKey || detectPromptKey(text);
+
+                appendMessage('user', text);
+                window.setTimeout(() => {
+                    if (key && pack.prompts[key]) {
+                        appendMessage('assistant', pack.prompts[key].reply);
+                    } else {
+                        appendMessage('assistant', pack.fallback);
+                    }
+                }, 240);
+            };
+
+            promptButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const lang = currentLang();
+                    const promptKey = button.dataset.promptKey;
+                    const text = chatCopy[lang].prompts[promptKey].user;
+                    respond(text, promptKey);
+                });
+            });
+
+            chatComposer.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const value = chatInput.value.trim();
+                if (!value) return;
+                respond(value);
+                chatInput.value = '';
+            });
+
+            document.addEventListener('site:languagechange', () => {
+                renderStarters();
+            });
+
+            renderStarters();
+        });
+    </script>
+    <script src="js/site.js"></script>
 </body>
 </html>
